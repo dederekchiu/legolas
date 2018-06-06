@@ -1,0 +1,2 @@
+export const REQUEST_CLIPS = 'REQUEST_CLIPS';
+export const RECEIVE_CLIPS = 'RECEIVE_CLIPS';
