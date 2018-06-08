@@ -6,7 +6,7 @@ const topClipsUrl = 'https://api.twitch.tv/kraken/clips/top';
 const headers = {'Client-ID': twitchClientKey, 'Accept': 'application/vnd.twitchtv.v5+json'};
 
 const getTopClips = (req, res) => {
-    axios.get(`${topClipsUrl}?limit=10`,
+    axios.get(`${topClipsUrl}?limit=3`,
         {
             headers: {'Client-ID': twitchClientKey, 'Accept': 'application/vnd.twitchtv.v5+json'}
         })
@@ -22,7 +22,7 @@ const getTopClips = (req, res) => {
 const getClipsByGame = (req, res) => {
     const game = req.params.game;
     axios
-        .get(`${topClipsUrl}?game=${game}&limit=10`,
+        .get(`${topClipsUrl}?game=${game}&limit=3`,
             {headers})
         .then(response => {
             let streams = response.data;
@@ -35,7 +35,7 @@ const getClipsByGame = (req, res) => {
 const getClipsByBroadcaster = (req, res) => {
     const broadcaster = req.params.broadcaster;
     axios
-        .get(`${topClipsUrl}?channel=${broadcaster}&limit=10`,
+        .get(`${topClipsUrl}?channel=${broadcaster}&limit=3`,
             {headers})
         .then(response => {
             let streams = response.data;

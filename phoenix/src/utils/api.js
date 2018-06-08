@@ -21,7 +21,11 @@ class APIClient {
 
     async getClipsByBroadcaster({ route }) {
         const res = await this.client.get(`/clips/channels/${route}`);
-        console.log('res:', res);
+        return res.data;
+    }
+
+    async getListOfGames() {
+        const res = await this.client.get('/games');
         return res.data;
     }
 }

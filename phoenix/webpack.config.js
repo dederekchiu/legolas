@@ -2,10 +2,12 @@ const webpack = require('webpack');
 const path = require('path');
 
 const SRC_DIR = path.resolve(__dirname, 'src');
+const PUB_DIR = path.resolve(__dirname, 'public');
 module.exports = {
     entry: [
         'react-hot-loader/patch',
         SRC_DIR,
+        PUB_DIR,
     ],
     module: {
         rules: [
@@ -13,6 +15,24 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: "[name]_[local]_[hash:base64]",
+                            sourceMap: true,
+                            minimize: true
+                        }
+                    }
+                ]
             }
         ]
     },

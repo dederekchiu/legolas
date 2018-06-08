@@ -5,7 +5,7 @@ import { lifecycle } from 'recompose';
 
 const mapStateToProps = state => {
     return {
-        clips: state.app.clips,
+        clips: state.broadcasterClips.clips,
     }
 };
 
@@ -16,7 +16,6 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(lifecycle({
     componentDidMount() {
         const broadcaster = this.props.match.params.broadcaster;
-        console.log('bbbb: ', broadcaster);
         this.props.getClipsByBroadcaster(broadcaster);
     }
 })(BroadcasterPage));

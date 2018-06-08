@@ -1,16 +1,12 @@
-import {RECEIVE_CLIPS_BY_BROADCASTER, RECEIVE_CLIPS_BY_GAME} from './constants';
+import { RECEIVE_GAMES_LIST } from './constants';
 
 function appReducer(state = {}, action) {
     switch (action.type) {
-        case RECEIVE_CLIPS_BY_GAME:
+        case RECEIVE_GAMES_LIST:
+            console.log('action', action.games)
             return {
                 ...state,
-                clips: action.clips.clips,
-            };
-        case RECEIVE_CLIPS_BY_BROADCASTER:
-            return {
-                ...state,
-                clips: action.clips.clips,
+                games: action.games.games,
             };
         default:
             return state;

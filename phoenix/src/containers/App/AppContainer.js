@@ -1,20 +1,20 @@
 import { connect } from 'react-redux';
-import App from './App';
-import {requestClipsByBroadcaster, requestClipsByGame} from './actions';
+import { requestListOfGames } from './actions';
 import { lifecycle } from 'recompose';
+import App from './App';
 
 const mapStateToProps = state => {
     return {
-        clips: state.app.clips,
+        listOfGames: state.listOfGames.games,
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    // getClipsByGame: (route) => dispatch(requestClipsByGame(route)),
-    // getClipsByBroadcaster: (route) => dispatch(requestClipsByBroadcaster(route)),
+    getAllGames: () => dispatch(requestListOfGames())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(lifecycle({
     componentDidMount() {
+        this.props.getAllGames();
     }
 })(App));

@@ -1,38 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Header from '../Header/Header.jsx'
 
 const App = ({
-    clips
+    listOfGames
 }) => {
-    console.log('app shouldnt load', clips);
     return (
         <div>
-            {clips.length > 0 ?
-                clips.map( (clip) => {
+            <Header/>
+            {
+                listOfGames.map((game) => {
+                    const link = `/game/${game.name}`;
                     return (
-                        <iframe
-                            src={`${clip.embed_url}&autoplay=false`}
-                            width='640'
-                            height='360'
-                            frameBorder='0'
-                            scrolling='no'
-                            allowFullScreen='true'
-                        />
+                        <div key={`${game.name}_${game.smallIcon}`}>
+                            <Link
+                                to={link}
+                                style={{
+                                    float: 'left',
+                                    marginLeft: '5px',
+                                }}
+                            >
+                                <img src={game.mediumIcon} />
+                            </Link>
+                        </div>
                     );
                 })
-                :
-                null
             }
         </div>
     )
 };
 
 App.propTypes = {
-    clips: PropTypes.array.isRequired,
+    listOfGames: PropTypes.array.isRequired,
 };
 
 App.defaultProps = {
-    clips: [],
+    listOfGames: [],
 };
 
 export default App;

@@ -8,15 +8,16 @@ const headers = {
 }
 const getTopGames = (req, res) => {
     axios
-        .get(`${url}?limit=100`, {headers})
+        .get(`${url}?limit=20`, {headers})
         .then((response) => {
             const listOfGames = [];
             const games = response.data.top;
             for (let i = 0; i < games.length; i++) {
                 const name = games[i].game.name;
-                const icon = games[i].game.box.large;
-                const nameIconMap = {};
-                nameIconMap[name] = icon;
+                const largeIcon = games[i].game.box.large;
+                const mediumIcon = games[i].game.box.medium;
+                const smallIcon = games[i].game.box.small;
+                const nameIconMap = { name, largeIcon, mediumIcon, smallIcon };
                 listOfGames.push(nameIconMap);
             }
             res.send({games: listOfGames});

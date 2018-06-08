@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const GamePage = ({
     clips
 }) => {
+    console.log('clips from games: ', clips);
     return (
         <div>
             {clips.length > 0 ?
