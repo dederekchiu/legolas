@@ -14,13 +14,17 @@ class APIClient {
         });
     }
 
-    async getClips({ route }) {
-        console.log('route', route);
-        const res = await this.client.get(`${route}`);
-        console.log('sadasdasdas: ', res.data);
+    async getClipsByGame({ route }) {
+        const res = await this.client.get(`/clips/game/${route}`);
+        return res.data;
+    }
+
+    async getClipsByBroadcaster({ route }) {
+        const res = await this.client.get(`/clips/channels/${route}`);
+        console.log('res:', res);
         return res.data;
     }
 }
 
-const client = new APIClient(`${BACKEND_ENDPOINT}/clips`);
+const client = new APIClient(`${BACKEND_ENDPOINT}`);
 export default client;

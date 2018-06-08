@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const App = ({
+const BroadcasterPage = ({
     clips
 }) => {
-    console.log('app shouldnt load', clips);
+    console.log('clips from broadcaster', clips);
     return (
         <div>
             {clips.length > 0 ?
@@ -27,12 +27,12 @@ const App = ({
     )
 };
 
-App.propTypes = {
+BroadcasterPage.propTypes = {
     clips: PropTypes.array.isRequired,
 };
 
-App.defaultProps = {
+BroadcasterPage.defaultProps = {
     clips: [],
 };
 
-export default App;
+export default BroadcasterPage;

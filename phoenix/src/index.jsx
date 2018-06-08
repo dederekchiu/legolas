@@ -8,6 +8,8 @@ import { createHashHistory } from 'history'
 
 import configureStore from './store';
 import App from './containers/App/AppContainer';
+import BroadcasterContainer from './containers/BroadcasterPage/BroadcasterContainer';
+import GameContainer from './containers/GamePage/GameContainer';
 
 const store = configureStore();
 
@@ -15,7 +17,9 @@ ReactDOM.render(
     <Provider store={store}>
         <HashRouter history={createHashHistory}>
             <Switch>
-                <Route path='/:id' component={App}/>
+                <Route exact path='/' component={App} />
+                <Route path='/broadcaster/:broadcaster' component={BroadcasterContainer} />
+                <Route path='/game/:game' component={GameContainer} />
             </Switch>
         </HashRouter>
     </Provider>,

@@ -16,9 +16,9 @@ app.use(function(req, res, next) {
 });
 
 // CLIPS
-app.get('/clips/top', getTopClips);
-app.get('/clips/:game', getClipsByGame);
-app.get('/clips/:broadcaster', getClipsByBroadcaster);
+app.get('/clips', getTopClips);
+app.get('/clips/game/:game', getClipsByGame);
+app.get('/clips/channels/:broadcaster', getClipsByBroadcaster);
 
 // GAMES
 app.get('/games', getTopGames);

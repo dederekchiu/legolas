@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import App from './App';
+import GamePage from './GamePage';
 import {requestClipsByBroadcaster, requestClipsByGame} from './actions';
 import { lifecycle } from 'recompose';
 
@@ -10,11 +10,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    // getClipsByGame: (route) => dispatch(requestClipsByGame(route)),
-    // getClipsByBroadcaster: (route) => dispatch(requestClipsByBroadcaster(route)),
+    getClipsByGame: (route) => dispatch(requestClipsByGame(route)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(lifecycle({
     componentDidMount() {
+        const game = this.props.match.params.game;
+        this.props.getClipsByGame(game);
     }
-})(App));
+})(GamePage));

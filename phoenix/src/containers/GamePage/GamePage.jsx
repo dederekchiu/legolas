@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const App = ({
+const GamePage = ({
     clips
 }) => {
-    console.log('app shouldnt load', clips);
     return (
         <div>
             {clips.length > 0 ?
@@ -27,12 +26,12 @@ const App = ({
     )
 };
 
-App.propTypes = {
+GamePage.propTypes = {
     clips: PropTypes.array.isRequired,
 };
 
-App.defaultProps = {
+GamePage.defaultProps = {
     clips: [],
 };
 
-export default App;
+export default GamePage;

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.jsx",
   "license": "MIT",
+  "scripts": {
+    "start": "node main"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "cors": "^2.8.4",

@@ -33,9 +33,9 @@ const getClipsByGame = (req, res) => {
 };
 
 const getClipsByBroadcaster = (req, res) => {
-    const channel = req.params.channel;
+    const broadcaster = req.params.broadcaster;
     axios
-        .get(`${topClipsUrl}?channel=${channel}&limit=10`,
+        .get(`${topClipsUrl}?channel=${broadcaster}&limit=10`,
             {headers})
         .then(response => {
             let streams = response.data;
