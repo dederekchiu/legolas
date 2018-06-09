@@ -5,7 +5,7 @@ import { lifecycle } from 'recompose';
 
 const mapStateToProps = state => {
     return {
-        clips: state.broadcasterClips.clips,
+        clips: state.broadcaster.clips,
     }
 };
 

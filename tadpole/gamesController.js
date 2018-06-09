@@ -5,10 +5,11 @@ const url = 'https://api.twitch.tv/kraken/games/top';
 const headers = {
     'Accept': 'application/vnd.twitchtv.v5+json',
     'Client-ID': twitchClientKey,
-}
+};
+
 const getTopGames = (req, res) => {
     axios
-        .get(`${url}?limit=20`, {headers})
+        .get(`${url}?limit=25`, {headers})
         .then((response) => {
             const listOfGames = [];
             const games = response.data.top;

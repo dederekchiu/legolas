@@ -34,8 +34,11 @@ const getClipsByGame = (req, res) => {
 
 const getClipsByBroadcaster = (req, res) => {
     const broadcaster = req.params.broadcaster;
+    const trending = req.params.trending;
+    let url = `${topClipsUrl}?channel=${broadcaster}&limit=3`;
+    url = (trending ? `${url}&trending=true` : url);
     axios
-        .get(`${topClipsUrl}?channel=${broadcaster}&limit=3`,
+        .get(url,
             {headers})
         .then(response => {
             let streams = response.data;
@@ -45,6 +48,17 @@ const getClipsByBroadcaster = (req, res) => {
     });
 };
 
+const getTrendingClips = (req, res) => {
+    axios.get(`${topClipsUrl}?trending=true&limit=3`, {headers})
+        .then(response => {
+            let trendingClips = response.data;
+            res.send(trendingClips);
+        }).catch((err) => {
+            console.log('err on trending clips', err);
+    })
+};
+
 exports.getTopClips = getTopClips;
 exports.getClipsByGame = getClipsByGame;
 exports.getClipsByBroadcaster = getClipsByBroadcaster;
+exports.getTrendingClips = getTrendingClips;

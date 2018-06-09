@@ -7,9 +7,10 @@ import { Route, Switch, HashRouter } from 'react-router-dom';
 import { createHashHistory } from 'history'
 
 import configureStore from './store';
-import App from './containers/App/AppContainer';
+import Home from './containers/Home/Home';
 import BroadcasterContainer from './containers/BroadcasterPage/BroadcasterContainer';
-import GameContainer from './containers/GamePage/GameContainer';
+import GameContainer from './containers/GamePage/GameClipsContainer';
+import Layout from './components/Layout';
 
 const store = configureStore();
 
@@ -17,11 +18,13 @@ ReactDOM.render(
     <Provider store={store}>
         <HashRouter history={createHashHistory}>
             <Switch>
-                <Route exact path='/' component={App} />
-                <Route path='/broadcaster/:broadcaster' component={BroadcasterContainer} />
-                <Route path='/game/:game' component={GameContainer} />
+                <Layout>
+                    <Route exact path='/' component={Home} />
+                    <Route path='/broadcaster/:broadcaster' component={BroadcasterContainer} />
+                    <Route path='/game/:game' component={GameContainer} />
+                </Layout>
             </Switch>
         </HashRouter>
     </Provider>,
     document.getElementById('index'),
-)
+);

@@ -1,7 +1,8 @@
 import { all, call } from 'redux-saga/effects';
-import { watchRequestClips } from './containers/App/saga';
+import { watchRequestClips } from './containers/GamesList/saga';
 import { watchRequestClipsByBroadcaster } from './containers/BroadcasterPage/saga';
 import { watchRequestClipsByGame } from './containers/GamePage/saga';
+import { watchRequestTrendingClips } from './containers/TrendingClips/saga';
 
 const safe = function* (gen) {
     try {
@@ -16,5 +17,6 @@ export default function* root() {
         safe(watchRequestClips),
         safe(watchRequestClipsByBroadcaster),
         safe(watchRequestClipsByGame),
+        safe(watchRequestTrendingClips),
     ]);
 }

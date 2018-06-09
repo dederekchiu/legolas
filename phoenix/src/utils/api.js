@@ -28,6 +28,12 @@ class APIClient {
         const res = await this.client.get('/games');
         return res.data;
     }
+
+    async getTrendingClips() {
+        const res = await this.client.get('/clips/trending');
+        return res.data;
+    }
+
 }
 
 const client = new APIClient(`${BACKEND_ENDPOINT}`);

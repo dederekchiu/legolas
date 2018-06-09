@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GamePage = ({
+const GameClips = ({
     clips
 }) => {
     console.log('clips from games: ', clips);
@@ -27,12 +27,12 @@ const GamePage = ({
     )
 };
 
-GamePage.propTypes = {
+GameClips.propTypes = {
     clips: PropTypes.array.isRequired,
 };
 
-GamePage.defaultProps = {
+GameClips.defaultProps = {
     clips: [],
 };
 
-export default GamePage;
+export default GameClips;

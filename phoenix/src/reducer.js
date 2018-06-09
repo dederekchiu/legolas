@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import appReducer from './containers/App/reducer';
+import appReducer from './containers/GamesList/reducer';
 import broadcasterReducer from './containers/BroadcasterPage/reducer';
 import gamesReducer from './containers/GamePage/reducer';
+import trendingClipsReducer from './containers/TrendingClips/reducer';
 
 const reducers = combineReducers({
     listOfGames: appReducer,
-    broadcasterClips: broadcasterReducer,
-    gamesClip: gamesReducer,
+    broadcaster: broadcasterReducer,
+    games: gamesReducer,
+    trending: trendingClipsReducer,
 });
 
 export default reducers;

@@ -1,7 +1,8 @@
 const http = require('http');
 const express = require('express');
-const { getTopClips, getClipsByGame, getClipsByBroadcaster } = require('./clipsController');
+const { getTopClips, getClipsByGame, getClipsByBroadcaster, getTrendingClips } = require('./clipsController');
 const { getTopGames } = require('./gamesController');
+const { getLiveStreamers } = require('./broadcasterController');
 const app = express();
 
 app.listen(8080, () => {
@@ -16,9 +17,13 @@ app.use(function(req, res, next) {
 });
 
 // CLIPS
+app.get('/clips/trending', getTrendingClips);
 app.get('/clips', getTopClips);
 app.get('/clips/game/:game', getClipsByGame);
 app.get('/clips/channels/:broadcaster', getClipsByBroadcaster);
 
 // GAMES
 app.get('/games', getTopGames);
+
+// STREAMS
+app.get('/streamers', getLiveStreamers);

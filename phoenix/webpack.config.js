@@ -1,13 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const SRC_DIR = path.resolve(__dirname, 'src');
+const SRC_DIR = path.resolve(__dirname, 'src', 'index.jsx');
 const PUB_DIR = path.resolve(__dirname, 'public');
 module.exports = {
     entry: [
-        'react-hot-loader/patch',
         SRC_DIR,
-        PUB_DIR,
     ],
     module: {
         rules: [
@@ -30,7 +28,7 @@ module.exports = {
                             localIdentName: "[name]_[local]_[hash:base64]",
                             sourceMap: true,
                             minimize: true
-                        }
+                        },
                     }
                 ]
             }
@@ -40,7 +38,7 @@ module.exports = {
         extensions: ['*', '.js', '.jsx']
     },
     output: {
-        path: __dirname + '/dist',
+        path: path.join(__dirname, 'public'),
         publicPath: '/',
         filename: 'bundle.js'
     },
@@ -53,7 +51,7 @@ module.exports = {
     devtool: 'inline-source-map',
     devServer: {
         port: 8081,
-        contentBase: SRC_DIR,
+        contentBase: path.join(__dirname, '/public'),
         hot: true,
         compress: true
     }

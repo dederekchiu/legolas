@@ -1,20 +1,20 @@
 import { connect } from 'react-redux';
-import { requestListOfGames } from './actions';
+import { requestTrendingClips } from './actions';
 import { lifecycle } from 'recompose';
-import App from './App';
+import TrendingClips from './TrendingClips';
 
 const mapStateToProps = state => {
     return {
-        listOfGames: state.listOfGames.games,
+        trendingClips: state.trending.clips
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    getAllGames: () => dispatch(requestListOfGames())
+    getTrendingClips: () => dispatch(requestTrendingClips())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(lifecycle({
     componentDidMount() {
-        this.props.getAllGames();
+        this.props.getTrendingClips();
     }
-})(App));
+})(TrendingClips));

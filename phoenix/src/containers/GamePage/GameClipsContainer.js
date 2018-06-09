@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import GamePage from './GamePage';
+import GameClips from './GameClips';
 import {requestClipsByBroadcaster, requestClipsByGame} from './actions';
 import { lifecycle } from 'recompose';
 
 const mapStateToProps = state => {
     return {
-        clips: state.gamesClip.clips,
+        clips: state.games.clips,
     }
 };
 
@@ -18,4 +18,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(lifecycle({
         const game = this.props.match.params.game;
         this.props.getClipsByGame(game);
     }
-})(GamePage));
+})(GameClips));
