@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BroadcasterPage = ({
+const ChannelClips = ({
     clips
 }) => {
     console.log('clips from broadcaster', clips);
@@ -27,12 +27,12 @@ const BroadcasterPage = ({
     )
 };
 
-BroadcasterPage.propTypes = {
+ChannelClips.propTypes = {
     clips: PropTypes.array.isRequired,
 };
 
-BroadcasterPage.defaultProps = {
+ChannelClips.defaultProps = {
     clips: [],
 };
 
-export default BroadcasterPage;
+export default ChannelClips;

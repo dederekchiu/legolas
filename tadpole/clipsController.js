@@ -32,10 +32,10 @@ const getClipsByGame = (req, res) => {
         });
 };
 
-const getClipsByBroadcaster = (req, res) => {
-    const broadcaster = req.params.broadcaster;
+const getClipsByChannel = (req, res) => {
+    const channel = req.params.channel;
     const trending = req.params.trending;
-    let url = `${topClipsUrl}?channel=${broadcaster}&limit=3`;
+    let url = `${topClipsUrl}?channel=${channel}&limit=3`;
     url = (trending ? `${url}&trending=true` : url);
     axios
         .get(url,
@@ -58,7 +58,9 @@ const getTrendingClips = (req, res) => {
     })
 };
 
+// const getChannels = (req, res) => {}
+
 exports.getTopClips = getTopClips;
 exports.getClipsByGame = getClipsByGame;
-exports.getClipsByBroadcaster = getClipsByBroadcaster;
+exports.getClipsByChannel = getClipsByChannel;
 exports.getTrendingClips = getTrendingClips;

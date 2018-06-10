@@ -19,18 +19,24 @@ class APIClient {
         return res.data;
     }
 
-    async getClipsByBroadcaster({ route }) {
+    async getClipsByChannel({ route }) {
         const res = await this.client.get(`/clips/channels/${route}`);
         return res.data;
     }
 
     async getListOfGames() {
         const res = await this.client.get('/games');
+        console.log('ress: ', res);
         return res.data;
     }
 
     async getTrendingClips() {
         const res = await this.client.get('/clips/trending');
+        return res.data;
+    }
+
+    async getAllChannels() {
+        const res = await this.client.get('/channels');
         return res.data;
     }
 

@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
-import BroadcasterPage from './BroadcasterPage';
+import ChannelClips from './ChannelClips';
 import {requestClipsByBroadcaster} from './actions';
 import { lifecycle } from 'recompose';
 
 const mapStateToProps = state => {
     return {
-        clips: state.broadcaster.clips,
+        clips: state.channel.clips,
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    getClipsByBroadcaster: (route) => dispatch(requestClipsByBroadcaster(route)),
+    getClipsByChannel: (route) => dispatch(requestClipsByBroadcaster(route)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(lifecycle({
     componentDidMount() {
-        const broadcaster = this.props.match.params.broadcaster;
-        this.props.getClipsByBroadcaster(broadcaster);
+        const broadcaster = this.props.match.params.channel;
+        this.props.getClipsByChannel(broadcaster);
     }
-})(BroadcasterPage));
+})(ChannelClips));

@@ -8,8 +8,8 @@ import { createHashHistory } from 'history'
 
 import configureStore from './store';
 import Home from './containers/Home/Home';
-import BroadcasterContainer from './containers/BroadcasterPage/BroadcasterContainer';
-import GameContainer from './containers/GamePage/GameClipsContainer';
+import BroadcasterContainer from './containers/ChannelClips/ChannelClipsContainer';
+import GameContainer from './containers/GameClips/GameClipsContainer';
 import Layout from './components/Layout';
 
 const store = configureStore();
@@ -20,7 +20,7 @@ ReactDOM.render(
             <Switch>
                 <Layout>
                     <Route exact path='/' component={Home} />
-                    <Route path='/broadcaster/:broadcaster' component={BroadcasterContainer} />
+                    <Route path='/channel/:channel' component={BroadcasterContainer} />
                     <Route path='/game/:game' component={GameContainer} />
                 </Layout>
             </Switch>

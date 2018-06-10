@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Header from '../Header/Header.jsx'
 
-const GamesList = ({
-    listOfGames
+import { Link } from 'react-router-dom'
+
+const Channels = ({
+    channels,
 }) => {
     return (
-        <div style={{backgroundColor: 'purple', clear: 'right'}}>
+        <div style={{
+            backgroundColor: 'blue',
+            clear: 'left'
+        }}>
             <span
                 style={{
                     marginLeft:'5px',
@@ -15,14 +18,15 @@ const GamesList = ({
                     fontSize: '22px',
                 }}
             >
-                Games
+                Channels
             </span>
-                <br/>
+            <br />
+            <div>
                 {
-                    listOfGames.map((game) => {
-                        const link = `/game/${game.name}`;
+                    channels.map((channel) => {
+                        const link = `/channel/${channel.name}`;
                         return (
-                            <div key={`${game.name}_${game.smallIcon}`} >
+                            <div key={`${channel.name}_${channel.logo}`} >
                                 <Link
                                     to={link}
                                     style={{
@@ -30,22 +34,24 @@ const GamesList = ({
                                         float: 'left',
                                     }}
                                 >
-                                    <img src={game.mediumIcon} width={136} height={190} />
+                                    <img src={channel.logo} width={136} height={190} />
                                 </Link>
                             </div>
                         );
+
                     })
                 }
+            </div>
         </div>
     )
 };
 
-GamesList.propTypes = {
-    listOfGames: PropTypes.array.isRequired,
+Channels.propTypes = {
+    channels: PropTypes.array.isRequired,
 };
 
-GamesList.defaultProps = {
-    listOfGames: [],
+Channels.defaultProps = {
+    channels: [],
 };
 
-export default GamesList;
+export default Channels;

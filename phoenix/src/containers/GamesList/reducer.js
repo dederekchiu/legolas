@@ -3,7 +3,6 @@ import { RECEIVE_GAMES_LIST } from './constants';
 function appReducer(state = {}, action) {
     switch (action.type) {
         case RECEIVE_GAMES_LIST:
-            console.log('action', action.games)
             return {
                 ...state,
                 games: action.games.games,

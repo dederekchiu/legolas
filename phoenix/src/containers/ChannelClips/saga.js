@@ -5,7 +5,7 @@ import APIClient  from './../../utils/api';
 
 export function* requestClipsByBroadcaster({ route }) {
     try {
-        const clips = yield apply(APIClient, APIClient.getClipsByBroadcaster, [{ route }]);
+        const clips = yield apply(APIClient, APIClient.getClipsByChannel, [{ route }]);
         yield put(receiveClipsByBroadcaster(clips));
     } catch (err) {
         console.log('error in request by broadcaster: ', err);

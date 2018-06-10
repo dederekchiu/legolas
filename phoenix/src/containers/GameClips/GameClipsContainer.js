@@ -10,12 +10,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    getClipsByGame: (route) => dispatch(requestClipsByGame(route)),
+    getAllChannels: (route) => dispatch(requestClipsByGame(route)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(lifecycle({
     componentDidMount() {
         const game = this.props.match.params.game;
-        this.props.getClipsByGame(game);
+        this.props.getAllChannels(game);
     }
 })(GameClips));
