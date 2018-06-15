@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SearchContainer from '../Search/SearchContainer';
 
 const Header = () => {
     return (
         <div style={{
-            overflow: 'hidden',
+            position: 'fixed',
+            zIndex: 10,
+            top: 0,
+            margin: '0 auto',
         }}>
             <div
                 style={{
                     width: '100vw',
-                    height: '56px',
-                    backgroundColor: '#c1eff2',
-                    marginBottom: '20px',
-                    display: 'inline-block'
+                    height: '62px',
+                    backgroundColor: '#4286f4',
                 }}
             >
                 <Link to='/'>
@@ -21,53 +23,19 @@ const Header = () => {
                         fontFamily: 'Audiowide',
                         fontSize: '42px',
                         display: 'inline-block',
+                        color: 'white'
                     }}>
                         clipIt
                     </div>
                 </Link>
-
-                <div style={{display: 'inline-block', marginLeft: '40px'}}>
-                    <Link to='/'>
-                        <a style={{
-                            fontSize: '24px',
-                            fontFamily: 'Artifika',
-                            marginRight: '20px',
-
-                        }}>
-                            Popular
-                        </a>
-                    </Link>
-                    <Link to='/'>
-                        <a style={{
-                            fontSize: '24px',
-                            fontFamily: 'Artifika',
-                            marginRight: '20px',
-
-                        }}>
-                            Trending
-                        </a>
-                    </Link>
-                    <Link to='/'>
-                        <a style={{
-                            fontSize: '24px',
-                            fontFamily: 'Artifika',
-                            marginRight: '20px',
-                        }}>
-                            Discover
-                        </a>
-                    </Link>
+                <div style={{
+                    display: 'inline-block',
+                    marginLeft: '20px',
+                    verticalAlign: 'middle',
+                    marginBottom: '20px',
+                }}>
+                    <SearchContainer/>
                 </div>
-
-                <input
-                    type='text'
-                    placeholder='Search..'
-                    style={{
-                        marginTop: '12px',
-                        padding: '6px',
-                        border: 'none',
-                    }}
-                />
-
             </div>
         </div>
     );

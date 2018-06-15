@@ -1,30 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ClipModalContainer from './../ClipModal/ClipModalContainer';
+import Clip from './../../components/Clips';
+import {
+    Button,
+    ButtonGroup,
+} from 'reactstrap';
+import ClipPeriodButtons from './../../components/ClipPeriodButtons';
 
 const ChannelClips = ({
-    clips
+    clips, clip, toggleClips, isClipsOpen, getClipsByChannel,
 }) => {
     console.log('clips from broadcaster', clips);
-    return (
-        <div>
-            {clips.length > 0 ?
-                clips.map( (clip) => {
-                    return (
-                        <iframe
-                            src={`${clip.embed_url}&autoplay=false`}
-                            width='640'
-                            height='360'
-                            frameBorder='0'
-                            scrolling='no'
-                            allowFullScreen='true'
-                        />
-                    );
-                })
-                :
-                null
-            }
-        </div>
-    )
+    if (clips.length > 0) {
+        return (
+            <div style={{marginTop:'70px'}}>
+                {/*<div style={{*/}
+                    {/*marginBottom: '20px',*/}
+                    {/*marginLeft: '20px'*/}
+                {/*}}>*/}
+                    {/*<header style={{fontSize: '32px'}}>*/}
+                        {/*{clips[0].broadcaster.name}*/}
+                    {/*</header>*/}
+                    {/*<img src={clips[0].broadcaster.logo}/>*/}
+                {/*</div>*/}
+                <div>
+                    <ClipPeriodButtons clips={clips} getClips={getClipsByChannel} name={clips[0].broadcaster.name}/>
+                    <div>
+                        {
+                            clips.map((clip) => {
+                                return <Clip toggleClips={toggleClips} clip={clip}/>;
+                            })
+                        }
+                    </div>
+                </div>
+                <ClipModalContainer isClipsOpen={isClipsOpen} toggle={toggleClips} clip={clip}/>
+            </div>
+        )
+    } else {
+        return <div>404</div>;
+    }
 };
 
 ChannelClips.propTypes = {

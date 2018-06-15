@@ -1,0 +1,1 @@
+export const TOGGLE_CLIP_MODAL = 'TOGGLE_CLIP_MODAL';

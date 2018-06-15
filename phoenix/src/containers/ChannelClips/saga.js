@@ -3,9 +3,9 @@ import { receiveClipsByBroadcaster } from './actions';
 import { REQUEST_CLIPS_BY_BROADCASTER} from './constants';
 import APIClient  from './../../utils/api';
 
-export function* requestClipsByBroadcaster({ route }) {
+export function* requestClipsByBroadcaster({ route, period }) {
     try {
-        const clips = yield apply(APIClient, APIClient.getClipsByChannel, [{ route }]);
+        const clips = yield apply(APIClient, APIClient.getClipsByChannel, [{ route, period }]);
         yield put(receiveClipsByBroadcaster(clips));
     } catch (err) {
         console.log('error in request by broadcaster: ', err);

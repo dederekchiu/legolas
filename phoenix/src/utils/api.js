@@ -14,19 +14,20 @@ class APIClient {
         });
     }
 
-    async getClipsByGame({ route }) {
-        const res = await this.client.get(`/clips/game/${route}`);
+    async getClipsByGame({ route, period }) {
+        const url = (period) ? `/clips/games/${route}?period=${period}` : `/clips/games/${route}`;
+        const res = await this.client.get(url);
         return res.data;
     }
 
-    async getClipsByChannel({ route }) {
-        const res = await this.client.get(`/clips/channels/${route}`);
+    async getClipsByChannel({ route, period }) {
+        const url = (period) ?  `/clips/channels/${route}?period=${period}`: `/clips/channels/${route}`;
+        const res = await this.client.get(url);
         return res.data;
     }
 
     async getListOfGames() {
         const res = await this.client.get('/games');
-        console.log('ress: ', res);
         return res.data;
     }
 
@@ -37,6 +38,11 @@ class APIClient {
 
     async getAllChannels() {
         const res = await this.client.get('/channels');
+        return res.data;
+    }
+
+    async searchGames({ queryGames }) {
+        const res = await this.client.get(`/search/games?query=${queryGames}`);
         return res.data;
     }
 

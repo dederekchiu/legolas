@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
-import { requestTrendingClips } from './actions';
+import { requestTrendingClips, toggleClips } from './actions';
 import { lifecycle } from 'recompose';
 import TrendingClips from './TrendingClips';
 
 const mapStateToProps = state => {
     return {
-        trendingClips: state.trending.clips
+        trendingClips: state.trending.clips,
+        isClipsOpen: state.trending.openClips,
+        clip: state.trending.clip
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    getTrendingClips: () => dispatch(requestTrendingClips())
+    getTrendingClips: () => dispatch(requestTrendingClips()),
+    toggleClips: (clip) => dispatch(toggleClips(clip)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(lifecycle({

@@ -12,7 +12,6 @@ const getLiveStreamers = (req, res) => {
         .get(`${url}?limit=25`, {headers})
         .then((response) => {
             const data = response.data;
-            console.log('data:', data);
         })
         .catch((error) => {
             console.log('game error: ', error);

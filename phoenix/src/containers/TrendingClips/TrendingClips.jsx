@@ -1,55 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ClipModalContainer from './../ClipModal/ClipModalContainer';
+import Clips from "../../components/Clips";
 
-{/*<iframe*/}
-{/*src={`${clip.embed_url}&autoplay=false`}*/}
-{/*style={{*/}
-{/*marginLeft: '5px',*/}
-{/*marginBottom: '5px',*/}
-{/*}}*/}
-{/*width='320'*/}
-{/*height='180'*/}
-{/*frameBorder='0'*/}
-{/*scrolling='no'*/}
-{/*allowFullScreen='true'*/}
-{/*/>*/}
 const TrendingClips = ({
-    trendingClips
+    trendingClips, toggleClips, isClipsOpen, clip,
 }) => {
-    return (
-        <div style={{marginBottom: '20px'}}>
-            <span
-                style={{
-                    marginLeft:'5px',
-                    fontFamily: 'Artifika',
-                    fontSize: '22px',
-                }}
-            >
-                Trending
-            </span>
-            <div style={{backgroundColor: 'yellow'}}>
-                <br/>
-                {trendingClips.length > 0 ?
-                    trendingClips.map((clip) => {
-                        return (
-                            <img
-                                src={clip.thumbnails.medium}
-                                style={{
-                                    marginLeft: '5px',
-                                    marginBottom: '5px',
-                                }}
-                                width='320'
-                                height='180'
-                                onClick={ () => {console.log('xD')}}
-                            />
-                        );
-                    })
-                    :
-                    null
-                }
+    if (trendingClips.length > 0) {
+        return (
+            <div style={{
+                marginTop: '70px',
+            }}>
+                <div>
+                    <span
+                        style={{
+                            marginLeft: '20px',
+                            fontFamily: 'Artifika',
+                            fontSize: '22px',
+                            display: 'block'
+                        }}
+                    >
+                        Trending
+                    </span>
+
+                    {trendingClips.map((clip) => {
+                            return <Clips toggleClips={toggleClips} clip={clip}/>
+                    })}
+                </div>
+                <ClipModalContainer isClipsOpen={isClipsOpen} toggle={toggleClips} clip={clip}/>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return <div>404</div>;
+    }
 };
 
 TrendingClips.propTypes = {

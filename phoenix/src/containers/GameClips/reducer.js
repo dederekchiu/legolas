@@ -3,7 +3,6 @@ import { RECEIVE_CLIPS_BY_GAME } from './constants';
 function gameReducer(state = {}, action) {
     switch (action.type) {
         case RECEIVE_CLIPS_BY_GAME:
-            console.log('clips', action)
             return {
                 ...state,
                 clips: action.clips.clips,

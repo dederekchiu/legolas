@@ -8,7 +8,6 @@ const Channels = ({
 }) => {
     return (
         <div style={{
-            backgroundColor: 'blue',
             clear: 'left'
         }}>
             <span

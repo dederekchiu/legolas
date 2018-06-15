@@ -1,21 +1,33 @@
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GameClips from './GameClips';
-import {requestClipsByBroadcaster, requestClipsByGame} from './actions';
+import { requestClipsByGame } from './actions';
 import { lifecycle } from 'recompose';
+import {toggleClips} from "../TrendingClips/actions";
+import {requestClipsByBroadcaster} from "../ChannelClips/actions";
 
 const mapStateToProps = state => {
     return {
-        clips: state.games.clips,
+        isClipsOpen: state.trending.openClips,
+        clip: state.trending.clip,
+        clips: state.games.clips
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    getAllChannels: (route) => dispatch(requestClipsByGame(route)),
+    getClipsByGame: (route, period) => dispatch(requestClipsByGame(route, period)),
+    toggleClips: (clip) => dispatch(toggleClips(clip)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(lifecycle({
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(lifecycle({
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.match.params.game !== this.props.match.params.game) {
+            const game = nextProps.match.params.game;
+            this.props.getClipsByGame(game);
+        }
+    },
     componentDidMount() {
         const game = this.props.match.params.game;
-        this.props.getAllChannels(game);
+        this.props.getClipsByGame(game);
     }
-})(GameClips));
+})(GameClips)));

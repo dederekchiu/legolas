@@ -3,9 +3,9 @@ import {receiveClipsByGame, receiveClipsByBroadcaster} from './actions';
 import {REQUEST_CLIPS_BY_GAME} from './constants';
 import APIClient  from './../../utils/api';
 
-export function* requestClipsByGame({ route }) {
+export function* requestClipsByGame({ route, period }) {
     try {
-        const clips = yield apply(APIClient, APIClient.getClipsByGame, [{ route }]);
+        const clips = yield apply(APIClient, APIClient.getClipsByGame, [{ route, period }]);
         yield put(receiveClipsByGame(clips));
     } catch (e) {
         console.log('error in saga: ', e);

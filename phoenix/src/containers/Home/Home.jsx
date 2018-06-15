@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import GamesListContainer from '../GamesList/GamesListContainer';
 import TrendingClipsContainer from '../TrendingClips/TrendingClipsContainer';
 import ChannelsContainer from '../ChannelsList/ChannelsListContainer';
-
+import ClipModalContainer from './../ClipModal/ClipModalContainer';
 const Home = () => {
     return (
         <div>

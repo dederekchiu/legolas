@@ -4,9 +4,10 @@ import {
 } from './constants';
 
 
-export const requestClipsByBroadcaster = (route) => ({
+export const requestClipsByBroadcaster = (route, period) => ({
     type: REQUEST_CLIPS_BY_BROADCASTER,
     route,
+    period,
 });
 
 export const receiveClipsByBroadcaster = (clips) => ({

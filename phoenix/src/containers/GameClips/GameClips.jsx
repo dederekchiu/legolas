@@ -1,30 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ClipModalContainer from './../ClipModal/ClipModalContainer';
+import Clip from "../../components/Clips";
+import ClipPeriodButtons from './../../components/ClipPeriodButtons';
 
 const GameClips = ({
-    clips
+    clips, clip, toggleClips, isClipsOpen, getClipsByGame
 }) => {
     console.log('clips from games: ', clips);
-    return (
-        <div>
-            {clips.length > 0 ?
-                clips.map( (clip) => {
-                    return (
-                        <iframe
-                            src={`${clip.embed_url}&autoplay=false`}
-                            width='640'
-                            height='360'
-                            frameBorder='0'
-                            scrolling='no'
-                            allowFullScreen='true'
-                        />
-                    );
-                })
-                :
-                null
-            }
-        </div>
-    )
+    if (clips.length > 0) {
+        return (
+            <div style={{marginTop:'70px'}}>
+                {/*<header>{clips[0].game}</header>*/}
+                <div>
+                    <ClipPeriodButtons clips={clips} getClips={getClipsByGame} name={clips[0].game}/>
+                    <div>
+                        {clips.map((clip) => {
+                            return <Clip toggleClips={toggleClips} clip={clip}/>;
+                        })}
+                    </div>
+                </div>
+                <ClipModalContainer isClipsOpen={isClipsOpen} toggle={toggleClips} clip={clip}/>
+            </div>
+        )
+    } else {
+        return <div style={{fontSize: '70px'}}>404</div>;
+    }
 };
 
 GameClips.propTypes = {

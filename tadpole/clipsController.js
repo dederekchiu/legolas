@@ -6,7 +6,7 @@ const topClipsUrl = 'https://api.twitch.tv/kraken/clips/top';
 const headers = {'Client-ID': twitchClientKey, 'Accept': 'application/vnd.twitchtv.v5+json'};
 
 const getTopClips = (req, res) => {
-    axios.get(`${topClipsUrl}?limit=3`,
+    axios.get(`${topClipsUrl}?limit=30`,
         {
             headers: {'Client-ID': twitchClientKey, 'Accept': 'application/vnd.twitchtv.v5+json'}
         })
@@ -21,9 +21,12 @@ const getTopClips = (req, res) => {
 
 const getClipsByGame = (req, res) => {
     const game = req.params.game;
+    const period = (req.query.period) ? req.query.period : 'all';
+    const trending = req.params.trending;
+    let url = `${topClipsUrl}?game=${game}&limit=30&period=${period}`;
+    url = (trending ? `${url}&trending=true` : url);
     axios
-        .get(`${topClipsUrl}?game=${game}&limit=3`,
-            {headers})
+        .get(url, {headers})
         .then(response => {
             let streams = response.data;
             res.send(streams);
@@ -34,12 +37,12 @@ const getClipsByGame = (req, res) => {
 
 const getClipsByChannel = (req, res) => {
     const channel = req.params.channel;
+    const period = (req.query.period) ? req.query.period : 'all';
     const trending = req.params.trending;
-    let url = `${topClipsUrl}?channel=${channel}&limit=3`;
+    let url = `${topClipsUrl}?channel=${channel}&limit=30&period=${period}`;
     url = (trending ? `${url}&trending=true` : url);
     axios
-        .get(url,
-            {headers})
+        .get(url, {headers})
         .then(response => {
             let streams = response.data;
             res.send(streams);
@@ -58,8 +61,32 @@ const getTrendingClips = (req, res) => {
     })
 };
 
-// const getChannels = (req, res) => {}
+const getTrendingClipsByChannel = (req, res) => {
+    const url = `${topClipsUrl}?channel=${req.params.channel}&trending=true`;
+    axios
+        .get(url, {headers})
+        .then(response => {
+            res.send(response.data);
+        })
+        .catch((err) => {
+            console.log('get trending clips by channel', err);
+        });
+};
 
+const getTrendingClipsByGame = (req, res) => {
+    const url = `${topClipsUrl}?channel=${req.params.game}&trending=true`;
+    axios
+        .get(url, {headers})
+        .then(response => {
+            res.send(response.data);
+        })
+        .catch((err) => {
+            console.log('get trending clips by channel', err);
+        });
+};
+
+exports.getTrendingClipsByGame = getTrendingClipsByGame;
+exports.getTrendingClipsByChannel = getTrendingClipsByChannel;
 exports.getTopClips = getTopClips;
 exports.getClipsByGame = getClipsByGame;
 exports.getClipsByChannel = getClipsByChannel;

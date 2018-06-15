@@ -4,6 +4,7 @@ import { watchRequestClipsByBroadcaster } from './containers/ChannelClips/saga';
 import { watchRequestClipsByGame } from './containers/GameClips/saga';
 import { watchRequestTrendingClips } from './containers/TrendingClips/saga';
 import { watchRequestChannels } from './containers/ChannelsList/saga';
+import { watchSearchGames } from './containers/Search/saga';
 
 const safe = function* (gen) {
     try {
@@ -20,5 +21,6 @@ export default function* root() {
         safe(watchRequestClipsByGame),
         safe(watchRequestTrendingClips),
         safe(watchRequestChannels),
+        safe(watchSearchGames),
     ]);
 }

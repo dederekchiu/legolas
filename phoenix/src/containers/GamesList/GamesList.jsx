@@ -7,7 +7,7 @@ const GamesList = ({
     listOfGames
 }) => {
     return (
-        <div style={{backgroundColor: 'purple', clear: 'right'}}>
+        <div style={{ clear: 'right' }}>
             <span
                 style={{
                     marginLeft:'5px',

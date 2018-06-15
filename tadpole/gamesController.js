@@ -9,7 +9,7 @@ const headers = {
 
 const getTopGames = (req, res) => {
     axios
-        .get(`${url}?limit=25`, {headers})
+        .get(`${url}?limit=20`, {headers})
         .then((response) => {
             const listOfGames = [];
             const games = response.data.top;
